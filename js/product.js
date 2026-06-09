@@ -71,6 +71,7 @@ function createContent(data) {
 // 상품 상세 tab
 const detailTabMenus = document.querySelector(".detail-tabs");
 const detailTabContents = document.querySelector(".tab-contents");
+
 // detailTabMenus를 클릭하면,
 // 변수명 target에 클릭한 요소의 href 속성의 값을 할당
 // detailTabContents의 모든 자식 요소에서 active 제거
