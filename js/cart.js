@@ -7,8 +7,10 @@ const selectAllText = selectAll.querySelector("span");
 const selectDeleteBtn = document.querySelector(".cart-list-header button");
 const productAmount = document.querySelector(".order-row strong");
 const totalAmount = document.querySelector(".order-total strong");
+
 let cart = readCart();
 let cartHTML = [];
+let selectedIds = new Set();
 
 // 장바구니 수 업데이트
 updateCartCount();
@@ -93,6 +95,7 @@ function updateSelectState() {
   console.log(checkboxes.length);
   // 모두 체크시 전체선택부분 체크
   selectAll.querySelector("input").checked = checkedCount > 0 && checkedCount === checkboxes.length;
+  selectedIds = new Set(getCheckedIds());
 }
 
 function renderCart() {
@@ -101,6 +104,7 @@ function renderCart() {
     el.remove();
   });
   cartHTML = [];
+
   console.log(cart);
   // 클래스명 cart-list의 내용의 뒤에 태그 생성
   // 로컬스토리지에서 상품의 내용을 가져와서 상품 카드 생성
@@ -117,7 +121,7 @@ function renderCart() {
         `
       <article class="cart-item" data-id="${p.id}">
         <label class="item-check">
-          <input type="checkbox"/>
+          <input type="checkbox" ${selectedIds.has(p.id) ? "checked" : ""}/>
         </label>
 
         <div class="cart-thumb">
@@ -128,7 +132,7 @@ function renderCart() {
         </div>
 
         <div class="cart-item-info">
-          <h2>${p.title}</h2>
+          <h2><a href="detail.html?id=${p.id}">${p.title}</a></h2>
           <p>${p.brand} | 블랙</p>
           <strong>$ ${p.price}</strong>
         </div>
@@ -170,14 +174,13 @@ saveCart();
 //선택 삭제
 selectDeleteBtn.addEventListener("click", () => {
   // 체크된 상품 id를 파악
-  const checkboxes = getCheckBoxes();
-  const checkedIds = checkboxes
-    .filter(checkbox => checkbox.checked)
-    .map(checkbox => Number(checkbox.closest(".cart-item").dataset.id));
+  const checkedIds = getCheckedIds();
   console.log(checkedIds);
   if (checkedIds.length === 0) return;
   // cart배열에서 id와 일치하는 요소를 제외
   cart = cart.filter(item => !checkedIds.includes(item.id));
+
+  selectedIds = checkedIds;
   // saveCart 실행
   saveCart();
   // renderCart 실행
@@ -197,3 +200,11 @@ selectAll.querySelector("input").addEventListener("change", e => {
   }
   updateSelectState();
 });
+
+function getCheckedIds() {
+  const checkboxes = getCheckBoxes();
+  return checkboxes
+    .filter(checkbox => checkbox.checked)
+    .map(checkbox => Number(checkbox.closest(".cart-item").dataset.id));
+  console.log(checkedIds);
+}
