@@ -62,9 +62,9 @@ function createContent(data) {
   title.textContent = `${data.title}`;
   desc.textContent = `${data.description}`;
   discountRate.textContent = `${data.discountPercentage}%`;
-  salePrice.textContent = `${Math.round(data.price * (100 - data.discountPercentage)) / 100}$`;
+  salePrice.textContent = `$ ${Math.round(data.price * (100 - data.discountPercentage)) / 100}`;
   // salePrice.textContent = (data.price / (1 - data.discountPercentage / 100)).toFixed(2);
-  originPrice.textContent = `${data.price}$`;
+  originPrice.textContent = `$ ${data.price}`;
   details.textContent = data.description;
 }
 
@@ -120,7 +120,7 @@ function createRecommendLists(all, catrgory, id) {
           <h3><a href="#">${p.title}</a></h3>
           <p>${p.category}</p>
           <div class="product-bottom">
-            <strong>${p.price} $</strong>
+            <strong>$ ${p.price}</strong>
             <button
               type="button"
               class="cart-add"

@@ -68,7 +68,7 @@ function renderProducts(data) {
               <h3><a href="detail.html?id=${p.id}">${p.title}</a></h3>
               <p>${p.brand}</p>
               <div class="product-bottom">
-                <strong>${p.price}</strong>
+                <strong>$ ${p.price}</strong>
                 <button type="button" data-id="${p.id}" class="cart-add" aria-label="${p.title} 장바구니 담기"></button>
               </div>
             </div>

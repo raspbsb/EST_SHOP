@@ -15,7 +15,7 @@
   </head>
   <body>
     <header class="site-header">
-      <div class="header-top container">
+      <!-- <div class="header-top container">
         <a href="./index.html" class="logo" aria-label="ShopMall home">logo</a>
         <nav class="simple-nav" aria-label="주요 메뉴">
           <ul>
@@ -29,10 +29,10 @@
           <a href="#">회원가입</a>
           <a href="cart.html" class="cart-button" aria-label="장바구니">
             <span class="cart-icon" aria-hidden="true"></span>
-            <span class="cart-count">3</span>
+            <span class="cart-count">0</span>
           </a>
         </div>
-      </div>
+      </div> -->
     </header>
 
     <main class="cart-main">
@@ -45,15 +45,16 @@
 
         <div class="cart-title-row">
           <h1 id="cart-title">장바구니</h1>
-          <p class="cart-count-text">총 3개의 상품</p>
+          <p class="cart-count-text">총 0개의 상품</p>
         </div>
 
         <div class="cart-layout">
           <section class="cart-list" aria-label="장바구니 상품 목록">
             <div class="cart-list-header">
-              <span class="select-all"
-                ><span class="check-box" aria-hidden="true"></span>전체선택 (3/3)</span
-              >
+              <label class="select-all">
+                <input type="checkbox" />
+                <span>전체선택 (0/0)</span>
+              </label>
               <button type="button">선택삭제</button>
             </div>
 
@@ -139,16 +140,14 @@
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="footer-inner container">
-        <p>© 2024 ShopMall. All rights reserved.</p>
-        <ul class="payment-list" aria-label="지원 결제 수단">
-          <li>visa</li>
-          <li>mc</li>
-          <li>p</li>
-        </ul>
-      </div>
-    </footer>
+    <footer class="site-footer"></footer>
+
+    <script type="module">
+      import { renderHeader } from "./js/modules/header.js";
+      import { renderFooter } from "./js/modules/footer.js";
+      renderHeader();
+      renderFooter();
+    </script>
     <script type="module" src="js/cart.js"></script>
   </body>
 </html>
